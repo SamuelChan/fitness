@@ -9,4 +9,13 @@
         <item name="helperTextTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
         </item>
     </style>
+
+    <style name="Widget.tvdi.TextInputLayout.OutlinedBox.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeErrorColor">@color/red_700</item>
+        <item name="errorIconTint">@color/red_700</item>
+        <item name="errorTextColor">@color/red_700</item>
+        <!--        <item name="errorIconDrawable">@drawable/ic_error</item>-->
+        <item name="helperTextTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+    </style>
 </resources>

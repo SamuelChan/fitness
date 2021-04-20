@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/preferred_name"
+            android:padding="@dimen/basic_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,16 +35,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/family_name_input"
+            android:id="@+id/family_name_input_layout"
             style="@style/Widget.tvdi.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/family_name"
+            android:padding="@dimen/basic_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/preferred_name_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/family_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={userViewModel.familyName}" />
@@ -51,19 +54,61 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/given_name_input"
+            android:id="@+id/given_name_input_layout"
             style="@style/Widget.tvdi.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/family_name"
+            android:padding="@dimen/basic_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/family_name_input">
+            app:layout_constraintTop_toBottomOf="@id/family_name_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/given_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={userViewModel.givenName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_input_layout"
+            style="@style/Widget.tvdi.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_address"
+            android:padding="@dimen/basic_padding"
+            app:emailError="@{@string/email_error}"
+            app:emailText="@{userViewModel.email}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/given_name_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@={userViewModel.email}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_input_layout"
+            style="@style/Widget.tvdi.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:padding="@dimen/basic_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:text="@={userViewModel.phone}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -71,9 +116,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="@dimen/basic_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/given_name_input">
+            app:layout_constraintTop_toBottomOf="@id/phone_input_layout">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/radio_male"
@@ -103,6 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/birthdate"
+            android:padding="@dimen/basic_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gender_group">
@@ -116,6 +163,56 @@
                 android:text="@={userViewModel.birthdate}" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_input_layout"
+            style="@style/Widget.tvdi.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:padding="@dimen/basic_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/birthdate_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:text="@={userViewModel.password}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_or_signup_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/button_padding"
+            android:text="@string/sign_button"
+            app:layout_constraintEnd_toStartOf="@id/logout_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/button_padding"
+            android:text="@string/logout_button"
+            app:layout_constraintBottom_toBottomOf="@id/login_or_signup_button"
+            app:layout_constraintEnd_toStartOf="@id/update_button"
+            app:layout_constraintStart_toEndOf="@id/login_or_signup_button"
+            app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
+
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/button_padding"
+            android:text="@string/update_button"
+            app:layout_constraintBottom_toBottomOf="@id/login_or_signup_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/logout_button"
+            app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
