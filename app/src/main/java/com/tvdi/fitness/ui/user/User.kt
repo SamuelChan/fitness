@@ -2,7 +2,7 @@ package com.tvdi.fitness.ui.user
 
 import java.util.*
 
-data class User(val username: String) {
+data class User(val username: String = "") {
     var familyName: String = ""
     var givenName: String = ""
     var password: String = ""

@@ -15,37 +15,22 @@ class UserViewModel : ViewModel(), Observable {
 
     override fun addOnPropertyChangedCallback(
         callback: Observable.OnPropertyChangedCallback
-    ) {
-        callbacks.add(callback)
-    }
+    ) = callbacks.add(callback)
 
     override fun removeOnPropertyChangedCallback(
         callback: Observable.OnPropertyChangedCallback
-    ) {
-        callbacks.remove(callback)
-    }
+    ) = callbacks.remove(callback)
 
-    private fun notifyChange() {
-        callbacks.notifyCallbacks(this, 0, null)
-    }
+    private fun notifyChange() = callbacks.notifyCallbacks(this, 0, null)
 
     private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
-
-    //enum class Gender { MALE, FEMALE }
-    //private val _state =
+    var user: LiveData<User> = _user
+    val signedUp = MutableLiveData(false)
+    val signedIn = MutableLiveData(false)
+    val code = MutableLiveData("")
 
     init {
         val user = User("")
-        user.apply {
-            familyName = "Chan"
-            givenName = "Chih Yuan"
-            password = "Abcd_123"
-            email = "p399975@gmail.com"
-            preferredName = "Samuel"
-            gender = "female"
-            phone = "12345678"
-        }
         _user.value = user
     }
 
@@ -83,7 +68,7 @@ class UserViewModel : ViewModel(), Observable {
     }
     fun setGender(gender: Gender) {
         if (user.value == null) return
-        // TODO: 2021/4/16 genders
+
         when (gender) {
             Gender.MALE -> user.value!!.gender = "male"
             Gender.FEMALE -> user.value!!.gender = "female"
@@ -93,11 +78,13 @@ class UserViewModel : ViewModel(), Observable {
 
     @Bindable
     fun getBirthdate(): String =
-        if (user.value == null) "" else SimpleDateFormat("MM/dd/yy").format(user.value!!.birthdate.time)
+        if (user.value == null) "" else
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                .format(user.value!!.birthdate.time)
 
     fun setBirthdate(dateInput: String) {
-        val formatter = SimpleDateFormat("MM/dd/yy")
-        user.value?.birthdate = formatter.parse(dateInput) ?: Date()
+        user.value?.birthdate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            .parse(dateInput) ?: Date()
         notifyChange()
     }
 

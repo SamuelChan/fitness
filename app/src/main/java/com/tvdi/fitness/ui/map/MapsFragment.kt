@@ -93,7 +93,7 @@ class MapsFragment : Fragment() {
                         )
                     )
                     val goal = goalInput.text.toString().toDoubleOrNull() ?: 0.0
-                    val currentDate = SimpleDateFormat("yyyyMMdd")
+                    val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                         .format(Calendar.getInstance().time)
                     if (goal > 0.0 && calculatedDistance >= goal &&
                         !currentDate.equals(lastDismissDate, true)
@@ -109,7 +109,7 @@ class MapsFragment : Fragment() {
                 .setTitle(resources.getString(R.string.achievement_title))
                 .setMessage(resources.getString(R.string.achievement_message))
                 .setPositiveButton(resources.getString(R.string.achievement_button_text)) { _, _ ->
-                    lastDismissDate = SimpleDateFormat("yyyyMMdd")
+                    lastDismissDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                         .format(Calendar.getInstance().time)
                 }.show()
         } catch (exception: IllegalStateException) {
@@ -167,9 +167,10 @@ class MapsFragment : Fragment() {
                 (it as FloatingActionButton).setImageResource(
                     R.drawable.ic_baseline_stop_circle_24
                 )
-                sensorManager.registerListener(
-                    stepSensorListener, stepDetectSensor, SensorManager.SENSOR_DELAY_FASTEST
-                )
+                if ((requireActivity() as MainActivity).recognitionPermissionGranted)
+                    sensorManager.registerListener(
+                        stepSensorListener, stepDetectSensor, SensorManager.SENSOR_DELAY_FASTEST
+                    )
             } else {
                 perceiving = false
                 (it as FloatingActionButton).setImageResource(

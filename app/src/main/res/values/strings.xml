@@ -1,13 +1,11 @@
 <resources>
-    <string name="app_name">fitness</string>
+    <string name="app_name">FitnessLab</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_pedometer">Pedoemeter</string>
+    <string name="title_pedometer">Pedometer</string>
     <string name="title_Profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="family_name">Family Name</string>
     <string name="radio_male">Male</string>
     <string name="radio_female">Female</string>
@@ -18,7 +16,7 @@
     <string name="step_count">Step Count</string>
     <string name="email_address">Email Address</string>
     <string name="achievement_title">Goal Accomplished</string>
-    <string name="achievement_message">Congratulations! You\'ve reached to the today\'s goal and please keep it up tomorrow!</string>
+    <string name="achievement_message">Congratulations! You\'ve reached to the today\'s goal.\nPlease keep it up tomorrow!</string>
     <string name="achievement_button_text">I understand</string>
     <string name="phone_number">Phone Number</string>
     <string name="password">Password</string>
@@ -26,4 +24,9 @@
     <string name="sign_button">Login/Signup</string>
     <string name="logout_button">Logout</string>
     <string name="update_button">Update</string>
+    <string name="sign_up_dialog_button">Sign Up</string>
+    <string name="cancel_dialog_button">Cancel</string>
+    <string name="confirm_code_title">Please enter your email verification code:</string>
+    <string name="confirm_code_text">Verification Code</string>
+    <string name="date_pick_title">Select your birthdate</string>
 </resources>

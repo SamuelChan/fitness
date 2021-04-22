@@ -16,20 +16,28 @@ import com.tvdi.fitness.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val locationPermissionGranted: Boolean by lazy {
-        checkLocationPermissions()
-    }
-    val recognitionPermissionGranted: Boolean by lazy {
-        checkRecognitionPermissions()
-    }
-    private lateinit var binding: ActivityMainBinding
     private val requiredPermissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACTIVITY_RECOGNITION,
     )
 
+    val locationPermissionGranted: Boolean by lazy {
+        checkLocationPermissions().also {
+            if (!it) this.runOnUiThread { requestFitnessPermissions() }
+        }
+    }
+
+    val recognitionPermissionGranted: Boolean by lazy {
+        checkRecognitionPermissions().also {
+            if (!it) this.runOnUiThread { requestFitnessPermissions() }
+        }
+    }
+
+    private lateinit var binding: ActivityMainBinding
+
     fun requestFitnessPermissions() = requestPermissions.launch(requiredPermissions)
+
     private val requestPermissions = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { result ->
@@ -87,9 +95,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
         navView.setupWithNavController(navController)
     }
 }
